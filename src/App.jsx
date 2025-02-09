@@ -1,7 +1,15 @@
+import RackView from "./components/RackView.jsx";
+import RackForm from "./components/RackForm.jsx";
+import Header from "./components/Header.jsx";
+
 function App() {
   return (
     <div>
-      <h1 className="text-4xl font-bold">LEMME SEE YOUR RACK</h1>
+      <Header />
+      <div className="p-4">
+        <RackView />
+        <RackForm />
+      </div>
     </div>
   );
 }
