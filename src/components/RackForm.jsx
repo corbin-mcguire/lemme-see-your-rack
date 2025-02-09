@@ -3,6 +3,9 @@ import useRackStore from "../store/rackStore";
 
 export default function RackForm() {
   const addItem = useRackStore((state) => state.addItem);
+  const setRackSize = useRackStore((state) => state.setRackSize);
+  const rackSize = useRackStore((state) => state.rackSize);
+
   const [formData, setFormData] = useState({
     name: "",
     slots: "",
@@ -19,6 +22,10 @@ export default function RackForm() {
     }));
   };
 
+  const handleRackSizeChange = (e) => {
+    setRackSize(Number(e.target.value));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     addItem({
@@ -28,7 +35,6 @@ export default function RackForm() {
       id: crypto.randomUUID(),
     });
 
-    // Reset form
     setFormData({
       name: "",
       slots: "",
@@ -41,8 +47,29 @@ export default function RackForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="max-w-md space-y-4 bg-white p-6 rounded-lg shadow-md"
+      className="sticky top-6 bg-white p-6 rounded-lg shadow-md"
     >
+      <div className="mb-6 pb-6 border-b border-gray-200">
+        <label
+          htmlFor="rackSize"
+          className="block text-sm font-medium text-gray-700 mb-2"
+        >
+          Rack Size (U)
+        </label>
+        <select
+          id="rackSize"
+          value={rackSize}
+          onChange={handleRackSizeChange}
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+        >
+          {[...Array(44)].map((_, i) => (
+            <option key={i + 1} value={i + 1}>
+              {i + 1}U
+            </option>
+          ))}
+        </select>
+      </div>
+
       <div>
         <label
           htmlFor="name"
