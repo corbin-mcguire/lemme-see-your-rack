@@ -22,13 +22,23 @@ const useRackStore = create(
 
         set({ rack: [...currentRack, item] });
       },
-      removeItem: (item) =>
-        set((state) => ({ rack: state.rack.filter((i) => i !== item) })),
+      removeItem: (itemToRemove) => {
+        set((state) => ({
+          rack: state.rack.filter((item) => item !== itemToRemove),
+        }));
+      },
       clearRack: () => set({ rack: [] }),
       editItem: (item, newItem) =>
         set((state) => ({
           rack: state.rack.map((i) => (i === item ? newItem : i)),
         })),
+      reorderItems: (sourceIndex, destinationIndex) =>
+        set((state) => {
+          const newRack = Array.from(state.rack);
+          const [removed] = newRack.splice(sourceIndex, 1);
+          newRack.splice(destinationIndex, 0, removed);
+          return { rack: newRack };
+        }),
     }),
     {
       name: "rack-storage", // unique name for localStorage key
