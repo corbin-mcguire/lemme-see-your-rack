@@ -5,6 +5,7 @@ export default function RackForm() {
   const addItem = useRackStore((state) => state.addItem);
   const setRackSize = useRackStore((state) => state.setRackSize);
   const rackSize = useRackStore((state) => state.rackSize);
+  const totalUsedSlots = useRackStore((state) => state.totalUsedSlots);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -23,6 +24,10 @@ export default function RackForm() {
   };
 
   const handleRackSizeChange = (e) => {
+    if (Number(e.target.value) < totalUsedSlots) {
+      return;
+    }
+
     setRackSize(Number(e.target.value));
   };
 
@@ -63,7 +68,7 @@ export default function RackForm() {
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
         >
           {[...Array(44)].map((_, i) => (
-            <option key={i + 1} value={i + 1}>
+            <option key={i + 1} value={i + 1} disabled={i + 1 < totalUsedSlots}>
               {i + 1}U
             </option>
           ))}
@@ -105,7 +110,11 @@ export default function RackForm() {
         >
           <option value="">Select slots</option>
           {[...Array(44)].map((_, i) => (
-            <option key={i + 1} value={i + 1}>
+            <option
+              key={i + 1}
+              value={i + 1}
+              disabled={i + 1 + totalUsedSlots > rackSize}
+            >
               {i + 1}U
             </option>
           ))}

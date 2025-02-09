@@ -6,6 +6,7 @@ const useRackStore = create(
     (set, get) => ({
       rack: [],
       rackSize: 42, // Default size
+      totalUsedSlots: 0,
 
       setRackSize: (size) => set({ rackSize: size }),
       addItem: (item) => {
@@ -21,17 +22,29 @@ const useRackStore = create(
         }
 
         set({ rack: [...currentRack, item] });
+        get().updateTotalUsedSlots();
+      },
+      updateTotalUsedSlots: () => {
+        const currentRack = get().rack;
+        const totalUsedSlots = currentRack.reduce((sum, i) => sum + i.slots, 0);
+        set({ totalUsedSlots });
       },
       removeItem: (itemToRemove) => {
         set((state) => ({
           rack: state.rack.filter((item) => item !== itemToRemove),
         }));
+        get().updateTotalUsedSlots();
       },
-      clearRack: () => set({ rack: [] }),
-      editItem: (item, newItem) =>
+      clearRack: () => {
+        set({ rack: [] });
+        get().updateTotalUsedSlots();
+      },
+      editItem: (item, newItem) => {
         set((state) => ({
           rack: state.rack.map((i) => (i === item ? newItem : i)),
-        })),
+        }));
+        get().updateTotalUsedSlots();
+      },
       reorderItems: (sourceIndex, destinationIndex) =>
         set((state) => {
           const newRack = Array.from(state.rack);
