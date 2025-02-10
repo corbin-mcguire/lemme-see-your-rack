@@ -122,10 +122,10 @@ export default function RackView() {
     <div className="bg-slate-800 p-4 rounded-lg h-[calc(100vh-8rem)] shadow-slate-900 shadow-md">
       {rack.length === 0 ? (
         <div className="flex items-center justify-center h-full text-gray-500">
-          No items in the rack yet. Add some using the form!
+          No items in the rack yet. Show me your rack!
         </div>
       ) : (
-        <div className="flex flex-col gap-4 h-full overflow-y-auto">
+        <div className="flex flex-col gap-4 h-full overflow-y-auto ">
           <div className="flex items-center justify-between sticky top-0 bg-slate-700 p-4 rounded-lg z-10 shadow-md border border-gray-600 text-white">
             <div className="flex flex-col gap-2 items-center">
               <span className="text-lg font-semibold">
@@ -157,7 +157,7 @@ export default function RackView() {
               strategy={verticalListSortingStrategy}
             >
               <div
-                className="grid grid-cols-1 gap-2 relative h-full"
+                className="grid grid-cols-1 gap-2 relative h-full bg-white p-4 rounded-lg"
                 style={{
                   gridTemplateRows: `repeat(${rackSize}, minmax(min-content, 1fr))`,
                 }}
