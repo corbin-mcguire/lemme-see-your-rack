@@ -7,8 +7,8 @@ function App() {
   return (
     <div className="min-h-screen lsyr-container">
       <Header />
-      <div className="w-3/4 mx-auto">
-        <div className="grid grid-cols-2 gap-6 p-6">
+      <div className="mx-auto w-full 2xl:w-3/4">
+        <div className="grid grid-cols-1 gap-6 p-6 lg:grid-cols-2">
           <RackForm />
           <RackView />
         </div>

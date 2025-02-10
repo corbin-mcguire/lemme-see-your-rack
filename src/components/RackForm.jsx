@@ -52,7 +52,7 @@ export default function RackForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="sticky top-6 bg-slate-800 p-6 rounded-lg shadow-md space-y-6"
+      className="bg-slate-800 p-6 rounded-lg shadow-md space-y-6 shadow-slate-900"
     >
       <div className="mb-8 pb-6 border-b border-gray-200">
         <label
@@ -181,7 +181,7 @@ export default function RackForm() {
 
       <button
         type="submit"
-        className="mt-8 w-full bg-blue-500 text-white py-3 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
+        className="mt-8 w-full bg-blue-500 text-white py-3 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors hover:cursor-pointer"
       >
         Add Rack Item
       </button>

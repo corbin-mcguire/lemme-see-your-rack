@@ -119,7 +119,7 @@ export default function RackView() {
   const clearRack = useRackStore((state) => state.clearRack);
 
   return (
-    <div className="bg-slate-800 p-4 rounded-lg h-[calc(100vh-8rem)]">
+    <div className="bg-slate-800 p-4 rounded-lg h-[calc(100vh-8rem)] shadow-slate-900 shadow-md">
       {rack.length === 0 ? (
         <div className="flex items-center justify-center h-full text-gray-500">
           No items in the rack yet. Add some using the form!
