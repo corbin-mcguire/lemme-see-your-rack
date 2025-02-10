@@ -119,23 +119,23 @@ export default function RackView() {
   const clearRack = useRackStore((state) => state.clearRack);
 
   return (
-    <div className="bg-gray-200 p-4 rounded-lg h-[calc(100vh-8rem)]">
+    <div className="bg-slate-800 p-4 rounded-lg h-[calc(100vh-8rem)]">
       {rack.length === 0 ? (
         <div className="flex items-center justify-center h-full text-gray-500">
           No items in the rack yet. Add some using the form!
         </div>
       ) : (
         <div className="flex flex-col gap-4 h-full overflow-y-auto">
-          <div className="flex items-center justify-between sticky top-0 bg-gray-200 p-4 rounded-lg z-10 shadow-md border border-gray-600">
+          <div className="flex items-center justify-between sticky top-0 bg-slate-700 p-4 rounded-lg z-10 shadow-md border border-gray-600 text-white">
             <div className="flex flex-col gap-2 items-center">
               <span className="text-lg font-semibold">
                 {rack.reduce((acc, item) => acc + item.slots, 0)}U used of{" "}
                 {rackSize}U
               </span>
-              <span className="text-sm text-gray-500">
+              <span className="text-sm text-slate-400 self-start">
                 Total cost: $
                 {Math.round(
-                  rack.reduce((acc, item) => acc + item.price, 0) * 100
+                  rack.reduce((acc, item) => acc + (item.price || 0), 0) * 100
                 ) / 100}
               </span>
             </div>
